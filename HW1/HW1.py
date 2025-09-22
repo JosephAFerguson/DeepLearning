@@ -64,7 +64,7 @@ df = df.fillna(df.median(numeric_only=True))
 # Define label column
 label_col = "TARGET_deathRate"
 
-# Split into train (70%), val (15%), test (15%)
+# Split into train (75%), val (12.5%), test (12.5%)
 train_df, combine_df = train_test_split(df, test_size=0.25, random_state=104)
 test_df, val_df = train_test_split(combine_df, test_size=0.5, random_state=104)
 
