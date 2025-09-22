@@ -1,4 +1,5 @@
 # Joe Ferguson - HW1 (finished)
+import datetime
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -133,11 +134,11 @@ class LinearModel(nn.Module):
     """
     Simple linear regression model using PyTorch.
     """
-    def __init__(self, dim, bs, lr, epochs):
+    def __init__(self, dim, bs, lr, epochs,verbose):
         super().__init__()
         self.linear = nn.Linear(dim, 1)  # single linear layer
         # Train immediately after initialization
-        self.train_losses, self.val_losses = train_model(self, bs, lr, epochs)
+        self.train_losses, self.val_losses = train_model(self, bs, lr, epochs,verbose)
 
     def forward(self, x):
         return self.linear(x)
@@ -168,7 +169,11 @@ class LinearModel(nn.Module):
         plt.title(f"Predictions vs Actual\nMSE={mse:.2f}, R2={r2:.2f}")
         plt.xlabel("Actual")
         plt.ylabel("Predicted")
-
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        plt.text(0.95, 0.02, f"Generated: {timestamp}",
+             transform=plt.gca().transAxes,
+             fontsize=9, color="gray",
+             ha="right", va="bottom")
         plt.tight_layout()
         plt.show()
 
@@ -183,13 +188,13 @@ class DeepModel():
     model_arch = None
     actFunc = None
 
-    def __init__(self, arch, activationFunction, bs, lr, epochs):
+    def __init__(self, arch, activationFunction, bs, lr, epochs, verbose):
         self.actFunc = activationFunction
         self.model_arch = arch
         # Build network from architecture
         self.model = build_dnn(dim, architectures[arch], activationFunction)
         # Train the network
-        self.train_losses, self.val_losses = train_model(self.model, bs, lr, epochs)
+        self.train_losses, self.val_losses = train_model(self.model, bs, lr, epochs,verbose)
 
     def test(self):
         """
@@ -217,7 +222,11 @@ class DeepModel():
         plt.title(f"Predictions vs Actual\nMSE={mse:.2f}, R2={r2:.2f}")
         plt.xlabel("Actual")
         plt.ylabel("Predicted")
-
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        plt.text(0.95, 0.02, f"Generated: {timestamp}",
+             transform=plt.gca().transAxes,
+             fontsize=9, color="gray",
+             ha="right", va="bottom")
         plt.tight_layout()
         plt.show()
 
@@ -270,7 +279,8 @@ def train_model(model, bs, lr, epochs, verbose=True):
 
         # Optional progress printing
         if verbose and (epoch % 10 == 0 or epoch == epochs - 1):
-            print(f"Epoch {epoch}: Train Loss={train_losses[-1]:.4f}, Val Loss={val_loss:.4f}")
+            timestamp = datetime.datetime.now().strftime("%H:%M:%S")
+            print(f"Epoch {epoch}: Train Loss={train_losses[-1]:.4f}, Val Loss={val_loss:.4f}, Timestamp={timestamp}")
 
     return train_losses, val_losses
 
@@ -310,23 +320,20 @@ def evaluate_model(model, X_tensor, y_array):
     return mse, r2, preds, y_np
 
 
-def test_model(model_architexture, activationFunction, batchsize, learningrate, epochs):
+def test_model(model_architexture, activationFunction, batchsize, learningrate, epochs, verbose=False):
     """
     Train and evaluate either a LinearModel or DeepModel
     based on the chosen architecture.
     """
     if "Linear" in model_architexture:
-        model = LinearModel(dim, batchsize, learningrate, epochs)
+        model = LinearModel(dim, batchsize, learningrate, epochs, verbose)
         model.test()
     else:
-        model = DeepModel(model_architexture, activationFunction, batchsize, learningrate, epochs)
+        model = DeepModel(model_architexture, activationFunction, batchsize, learningrate, epochs,verbose)
         model.test()
 
 
 # ----------------- Main script -----------------
 if __name__ == "__main__":
     # Run tests with same architecture but different learning rates
-    test_model(model_architexture="DNN-8-4", activationFunction=Sigmoid, batchsize=16, learningrate=0.1, epochs=100)
-    test_model(model_architexture="DNN-8-4", activationFunction=Sigmoid, batchsize=16, learningrate=0.01, epochs=100)
-    test_model(model_architexture="DNN-8-4", activationFunction=Sigmoid, batchsize=16, learningrate=0.001, epochs=100)
-    test_model(model_architexture="DNN-8-4", activationFunction=Sigmoid, batchsize=16, learningrate=0.0001, epochs=100)
+    test_model(model_architexture="DNN-8-4", activationFunction=LeakyReLU, batchsize=16, learningrate=0.001, epochs=100, verbose=True)

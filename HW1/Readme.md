@@ -25,6 +25,8 @@ https://github.com/JosephAFerguson/DeepLearning/edit/main/README.md
       Epochs = 
         Choose the number of epochs as an int
 
-  For highest-performed DNN model and Linear regression model, it will be in the code, and there will also be screenshots in /HighPerformScreenShots
-  For screenshot's of iteration of model's training and testing with timestamps, it will be in /TrainTestScreenshots
+  For highest-performed DNN model and Linear regression model, there will be screenshots in /ScreenShots
+  For screenshot's of iteration of model's training and testing with timestamps, it will be in /Screenshots as well
+
+  Note: I was not able to replicate the one 0.87 R2 score I got for the 30-16-8-4 high performed model after adding timestamps to the code, this also explains the small inconsistencies between the report and the screenshots
 </details>
