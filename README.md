@@ -1,4 +1,5 @@
 [HW1](/HW1)
+https://github.com/JosephAFerguson/DeepLearning/edit/main/README.md 
 <details>
   My homework report is named as HW1_Report_fergujp.pdf and is in this folder.
   My code is called HW1.py and is in this folder.
