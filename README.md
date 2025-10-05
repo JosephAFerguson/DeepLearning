@@ -1,4 +1,5 @@
 [HW1](/HW1)
+
 <details>
   My homework report is named as HW1_Report_fergujp.pdf and is in this folder.
   My code is called HW1.py and is in this folder.
@@ -27,7 +28,9 @@
   For highest-performed DNN model and Linear regression model, it will be in the code, and there will also be screenshots in /HighPerformScreenShots
   For screenshot's of iteration of model's training and testing with timestamps, it will be in /TrainTestScreenshots
 </details>
+
 [HW2](/HW2)
+
 <details>
   
 </details>
