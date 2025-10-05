@@ -28,3 +28,7 @@ https://github.com/JosephAFerguson/DeepLearning/edit/main/README.md
   For highest-performed DNN model and Linear regression model, it will be in the code, and there will also be screenshots in /HighPerformScreenShots
   For screenshot's of iteration of model's training and testing with timestamps, it will be in /TrainTestScreenshots
 </details>
+[HW2](/HW2)
+<details>
+  
+</details>
