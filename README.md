@@ -31,6 +31,7 @@
 
 [HW2](/HW2)
 
-<details>
-  
-</details>
+
+[HW3](/HW3)
+
+[Final Project](https://github.com/JosephAFerguson/DeepLearningFinalProj)
